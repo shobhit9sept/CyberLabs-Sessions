@@ -72,7 +72,7 @@ Explanation by author:
 
 3 conv layer of window 3 * 3 = 1 window of 7 * 7
 
-using 3 convo layer means we get to involve 3 non-linear rectification layers which makes decision making more discriminate.
+Using 3 convo layer means we get to involve 3 non-linear rectification layers which makes decision making more discriminate.
 It decreases number of parameters
 Lets assume there are C number of channels then,
 3 conv layers with window of 3 * 3 = 3(3^2 * C^2 ) = 27C^2
@@ -128,7 +128,7 @@ First network was trained with size of 256.
 Then same weight are used to initalize network for size of 384. and learning rate was set to 10^-3.
 
 ### Second approach,
-set input image size to S where S from certain range [256, 512]
+Set input image size to S where S from certain range [256, 512]
 this can also be seen as training set augmentation by scale jittering. Where a single model is trained on recogniizing object over a wide range of scales.
 This approach was speed up by fine tuning weights from first approach
 
