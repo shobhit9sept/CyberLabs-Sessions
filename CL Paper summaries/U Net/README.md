@@ -31,22 +31,22 @@ strategy is important to apply the network to large images, since otherwise the
 resolution would be limited by the GPU memory.
 #### 2. Data augmentation
 Along with the usual shift, rotation, and color adjustments, they added elastic 
-deformations. This was done with a coarse (3x3) grid of random displacements, 
+deformations.
+
+This was done with a coarse (3x3) grid of random displacements, 
 with bicubic per-pixel displacements. This allows the network to learn 
 invariance to such deformations, without the need to see these transformations in 
-the annotated image corpus. This is important in biomedical segmentation since 
+the annotated image corpus. 
+
+This is important in biomedical segmentation since 
 deformation is the most common variation in tissue and realistic deformations 
 can be simulated efficiently.
 #### 3. Separation of touching objects of the same class
-This is done using a weighted loss, where the separating background labels 
-between touching cells obtain a large weight in the loss function. This forces the 
-network to learn the small separation borders between touching cells. The loss 
-function included per-pixel weights both to balance overall class frequencies and 
-to draw a clear separation between objects of the same class. The basic idea of 
-per-pixel weighting is to add a class weight (to upweight rarer classes), plus 
-“morphological operations” — find the distance to the two closest objects of 
-interest and upweight when the distances are small. This encourages the network 
-to learn to draw pixel boundaries between objects.
+1) Weighted loss is used to improve performance in object segmentation by forcing the network to learn small separation borders between touching objects.
+2) Per-pixel weights are included to balance class frequencies and draw a clear separation between objects of the same class.
+3) Class weights are added to upweight rarer classes.
+4) Morphological operations are used to find the distance to the two closest objects of interest and upweight when the distances are small.
+5) This encourages the network to learn to draw pixel boundaries between objects.
 ## Conclusion:
 This paper focuses on utilizing a U-shaped network for the task of image 
 segmentation specifically for biomedical images. Since, biomedical images 
