@@ -31,9 +31,13 @@ Fig 3.  Different object proposal transformations. (A) the original object propo
 Now, the proposed regions do not have a fixed aspect ratio. So, to make it compatible with the CNN input the authors propose a few methods, as illustrated in the figure above. Out of them, they adopt warping the image (D) with a context padding of p=16 pixels.
  
 ## Training
-The training is a 2-step process. The first step is supervised pre-training, where a CNN is trained on a large dataset using image-level annotations only. The second step is domain-specific fine-tuning, where the pre-trained CNN is further trained using warped region proposals for object detection.
-The CNN's architecture remains unchanged, except for replacing the classification layer with a new layer that includes an additional class for background. In fine-tuning, region proposals with ≥ 0.5 IoU overlap with a ground-truth box are treated as positive and others as negative.
-The training is performed using stochastic gradient descent, and each mini-batch includes 32 positive and 96 background windows. Positive windows are sampled more often to address their rarity compared to background.
+1) The training is a 2-step process for object detection.
+2) The first step is supervised pre-training using a CNN on a large dataset with only image-level annotations.
+3) The second step is domain-specific fine-tuning, where the pre-trained CNN is further trained on object detection using warped region proposals.
+4) The CNN's architecture remains unchanged, except for replacing the classification layer with a new layer that includes an additional class for background.
+5) In fine-tuning, region proposals with ≥ 0.5 IoU overlap with a ground-truth box are treated as positive and others as negative.
+6) The training is performed using stochastic gradient descent.
+7) Each mini-batch includes 32 positive and 96 background windows, and positive windows are sampled more often to address their rarity compared to background.
  
 #### Annotating training data:
  Consider training a binary classifier to detect cars. It’s clear that an image region tightly enclosing a car should be a positive example. Similarly, it’s clear that a background region, which has nothing to do with cars, should be a negative example.
