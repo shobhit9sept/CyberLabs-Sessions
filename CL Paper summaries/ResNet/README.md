@@ -28,7 +28,7 @@ Each of the layers follow the same pattern. They perform 3x3 convolution with a 
 
 The dotted line is there, precisely because there has been a change in the dimension of the input volume (of course a reduction because of the convolution). Note that this reduction between layers is achieved by an increase on the stride, from 1 to 2, at the first convolution of each layer; instead of by a pooling operation, which we are used to see as down samplers.
 
-![Table](add link)
+![Table](https://github.com/shobhit9sept/CyberLabs-Sessions/blob/main/CL%20Paper%20summaries/ResNet/Images/Table.jpg)
 
 ![3Darchitecture](add link)
 
