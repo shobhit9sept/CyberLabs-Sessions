@@ -52,9 +52,9 @@ For training RPNs, we assign a binary class label (of being an object or not) to
 
 
 ## Combining all of the above: 
-For each nxn region proposal, a feature vector is extracted of length 256 for ZF net and 512 for VGG-16 net.
-The feature vector is fed to 2 fully-connected layers, named cls and reg respectively, in order to generate an objectness score for the region and define the bounding box of the region.
-The cls layer is a binary classifier with 2 outputs, one for classifying the region as background and the other for classifying it as an object.
+1) For each nxn region proposal, a feature vector is extracted of length 256 for ZF net and 512 for VGG-16 net.
+2) The feature vector is fed to 2 fully-connected layers, named cls and reg respectively, in order to generate an objectness score for the region and define the bounding box of the region.
+3) The cls layer is a binary classifier with 2 outputs, one for classifying the region as background and the other for classifying it as an object.
 
 For training the RPN, each anchor is given a positive or negative objectness score based on the Intersection-over-Union (IoU).
 
