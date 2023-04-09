@@ -22,7 +22,7 @@ One of the problems ResNets solve is the famous known vanishing gradient. This i
 
 With ResNets, the gradients can flow directly through the skip connections backwards from later layers to initial filters.
 ## Architecture
-![Model architecture](add link)
+![Model architecture](https://github.com/shobhit9sept/CyberLabs-Sessions/blob/main/CL%20Paper%20summaries/ResNet/Images/Architecture.jpg)
 
 Each of the layers follow the same pattern. They perform 3x3 convolution with a fixed feature map dimension (F) [64, 128, 256, 512] respectively, bypassing the input every 2 convolutions. Furthermore, the width (W) and height (H) dimensions remain constant during the entire layer.
 
