@@ -30,7 +30,7 @@ The dotted line is there, precisely because there has been a change in the dimen
 
 ![Table](https://github.com/shobhit9sept/CyberLabs-Sessions/blob/main/CL%20Paper%20summaries/ResNet/Images/Table.jpg)
 
-![3Darchitecture](add link)
+![3Darchitecture](https://github.com/shobhit9sept/CyberLabs-Sessions/blob/main/CL%20Paper%20summaries/ResNet/Images/3Darchitecture.jpg)
 
 Every layer of a ResNet is composed of several blocks. This is because when ResNets go deeper, they normally do it by increasing the number of operations within a block, but the number of total layers remains the same — 4. An operation here refers to a convolution, a batch normalization and a ReLU activation to an input, except the last operation of a block, that does not have the ReLU.
 
