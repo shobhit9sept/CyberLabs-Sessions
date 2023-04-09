@@ -59,9 +59,9 @@ One positive side-effect of the more efficient use of parameters is a tendency o
 
 ## Conclusion - 
 
-DenseNets tend to yield consistent improvement in accuracy with growing number of parameters, without any signs of performance degradation or overfitting.
-
-They require substantially fewer parameters and less computation to achieve state-of-the-art performances.
-
-DenseNets naturally integrate the properties of identity mappings, deep supervision, and diversified depth. They allow feature reuse throughout the networks and can consequently learn more compact and, according to our experiments, more accurate models. Because of their compact internal representations and reduced feature redundancy, DenseNets may be good feature extractors for various computer vision tasks that build on convolutional features.
+1) DenseNets are a game-changer in computer vision, offering top-notch performance without overfitting, while using fewer parameters and less computation.
+2) Their unique structure integrates identity mappings, deep supervision, and diversified depth, allowing for feature reuse throughout the network and more efficient learning.
+3) DenseNets have shown exceptional performance in a range of computer vision tasks, including image classification, object detection, and semantic segmentation.
+4) They can even be used as pre-trained models for transfer learning on smaller datasets.
+5) DenseNets' compact internal representations and reduced feature redundancy make them ideal for feature extraction in various computer vision tasks, including facial recognition, autonomous driving, and medical image analysis.
 
