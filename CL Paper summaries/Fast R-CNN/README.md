@@ -3,17 +3,19 @@
 
 ## Introduction:
 
-We summarize Fast Region-based Convolutional Network method (Fast R-CNN) for object detection. Fast R-CNN builds on previous work to efficiently classify object proposals using deep convolutional networks. Compared to previous work, Fast R-CNN employs several innovations to improve training and testing speed while increasing detection accuracy.
+Fast R-CNN is a method for object detection that improves on previous models.
 
-Recently, our deep ConvNet algorithms have been able to get better predictions on image classification problems, but object detection is a more complicated and challenging task. Complexity arises because detection requires the accurate localization of objects, creating two primary challenges. First, we must process numerous candidate object locations (often called “proposals”). Second, we must refine the rough localization given by these candidates to achieve precise localization.
+Object detection is a complicated task because it requires accurate localization of objects.
 
-So, we propose a single-stage training algorithm that jointly learns to classify object proposals and refine their spatial locations. But why do we need a new model? Let's see the drawbacks of the earlier used models(i.e., R-CNN, SPPnets).
+Fast R-CNN uses a single-stage training algorithm to jointly classify object proposals and refine their spatial locations.
 
-Training is a multi-stage pipeline: R-CNN first finetunes a ConvNet on object proposals using log loss. Then, it fits SVMs to ConvNet features. These SVMs act as object detectors, replacing the softmax classifier learned by fine-tuning. In the third training stage, bounding-box regressors are learned.
+Previous models like R-CNN and SPPnets had drawbacks such as being expensive in space and time for training and slow for object detection.
 
-Training is expensive in space and time: For SVM and bounding-box regressor training, features are extracted from each object proposal in each image and written to disk.
+Fast R-CNN is faster and more accurate than previous models because it uses several innovations to improve training and testing speed.
 
-Object detection is slow: We extract features from each object proposal in each test image at test time.
+The model jointly learns to classify object proposals and refine their spatial locations, which makes it more efficient.
+
+Fast R-CNN is based on deep convolutional networks, which have been successful in image classification problems.
 
 ## Why Fast R-CNN?
 
@@ -32,12 +34,26 @@ Another that gives output four real-valued numbers for each of the K object clas
 
 
 ## RoI pooling layer:
-The RoI pooling layer uses max pooling to convert the features inside any valid region of interest into a small feature map with a fixed spatial extent of H × W (e.g., 7 × 7), where H and W are layer hyper-parameters that are independent of any particular RoI. Here RoI is a rectangular window into a convolutional feature map. Each RoI is defined by a four-tuple (r, c, h, w) that specifies its top-left corner (r, c) and its height and width (h, w). RoI max pooling works by dividing the h × w RoI window into an H × W grid of sub-windows of approximate size h/H × w/W and then max-pooling the values in each sub-window into the corresponding output grid cell. Pooling is applied to each feature map as in standard max pooling.
+
+The RoI pooling layer converts features inside a rectangular region of interest (RoI) into a fixed size feature map.
+
+The RoI is defined by a four-tuple (r, c, h, w) that specifies its top-left corner and its height and width.
+
+The RoI pooling layer divides the RoI window into an H × W grid of sub-windows.
+
+Each sub-window has an approximate size of h/H × w/W.
+
+The values in each sub-window are max-pooled into the corresponding output grid cell.
+
+The hyper-parameters H and W are independent of any particular RoI.
 
 ## Initialization from pre-trained networks:
 When a pre-trained network initializes a Fast R-CNN network, it undergoes three transformations. 
+
 First, the last max pooling layer is replaced by a RoI pooling layer that is configured by setting H and W to be compatible with the net’s first fully connected layer (e.g., H = W = 7 for VGG16). 
+
 Second, the network’s last fully connected layer and softmax (which were trained for 1000-way ImageNet classification) are replaced with the two sibling layers described earlier (a fully connected layer and softmax over K + 1 categories and category-specific bounding-box regressors). 
+
 Third, the network is modified to take two data inputs: a list of images and a list of RoIs in those images.
 
 ## Fine-tuning for detection:
