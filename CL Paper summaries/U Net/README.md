@@ -11,33 +11,18 @@ output to an image is a single class label. However, in many visual tasks,
 especially in biomedical image processing, the desired output should 
 include localization i.e., a class label is supposed to be assigned to each pixel. 
 ## Idea and Architecture:
-The U-Net architecture is built upon the Fully Convolutional Network and 
-modified in a way that it yields better segmentation in medical imaging. The 
-paper use’s excessive data augmentation by applying elastic deformations to the 
-available training images. This allows the network to learn invariance to such 
-deformations, without the need to see these transformations in the annotated 
-image data.
-The U-Net comprises of two parts an encoder/contraction path and a 
-decoder/expansion path. The contraction path consists of a repeated application 
-of a 3x3 convolutions(unpadded) each followed by a ReLU and a 2x2 max 
-pooling operation with stride 2 for downsampling. At each downsampling step, 
-we double the number of feature channels. This captures context through a 
-compact feature map.
+1) U-Net architecture is designed for better segmentation in medical imaging.
+2) Excessive data augmentation is used by applying elastic deformations to training images.
+3) U-Net has two parts: encoder/contraction path and decoder/expansion path.
+4) Contraction path involves repeated 3x3 convolutions, ReLU activation, and max pooling with stride 2 for downsampling.
+5) Feature channels are doubled at each downsampling step to capture context in a compact feature map.
 
-                        (IMG)
-
-
-The expansion path consists of upsampling of the feature map followed by a 2x2 
-convolution(“up-convolution”) that halves the number of feature channels a 
-concatenation with the cropped feature map from the contracting path, and a 3x3 
-convolution, followed by a ReLU. The upsampling of the feature dimension is 
-done to meet the same size as the block to be concatenated on the left. The 
-expansion helps in getting more features but loses the localization, the 
-localization information is concatenated from the contraction path.
-The cropping is necessary due to the loss of border pixels in every convolution. 
-At the final layer, a 1x1 convolution is used to map each 64-components feature 
-vector to the desired number of classes. The new ideas introduced in this paper 
-are:
+                (IMG)
+                
+6) Expansion path involves upsampling of feature map, 2x2 "up-convolution" to halve feature channels, concatenation with cropped feature map from contraction path, 3x3 convolution, and ReLU activation.
+7) Localization information is concatenated from contraction path to prevent loss of localization in expansion.
+8) Final layer uses a 1x1 convolution to map each 64-component feature vector to desired number of classes.
+The new ideas introduced in this paper are:
 #### 1. Overlap- tile strategy
 Prediction of the segmentation in the yellow area requires image data within the 
 blue area as input. To predict the pixels in the border region of the image, the 
