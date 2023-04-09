@@ -2,13 +2,13 @@
 # The Transformer – Attention is all you need
 
 
-Recurrent neural networks (RNN), long short-term memory networks (LSTM), and gated RNNs are ways to teach computers to understand and generate language. They are good for things like translating languages or predicting what comes next in a sentence.
+Recurrent neural networks (RNN), long short-term memory networks(LSTM) and gated RNNs are the popularly approaches used for Sequence Modelling tasks such as machine translation and language modeling. However, RNN/CNN handle sequences word-by-word in a sequential fashion. This sequentiality is an obstacle toward parallelization of the process.
 
-But, sometimes they can get confused when the sentences are very long or complicated. They can forget important information or mix it up with other information.
+Moreover, when such sequences are too long, the model is prone to forgetting the content of distant positions in sequence or mix it with following positions’ content.
 
-To help with this problem, scientists created something called "attention mechanisms". These attention mechanisms help the computer remember important information, no matter how far apart it is in a sentence.
+Attention mechanisms are one of the solutions to overcome the problem of model forgetting. This is because they allow dependency modelling without considering their distance in the input or output sequences. Due to this feature, they have become an integral part of sequence modeling and transduction models. 
 
-Usually, attention mechanisms are used with RNNs or other language-learning tools to make them even better.
+However, in most cases attention mechanisms are used in conjunction with a recurrent network.
 
 ## Architecture
 
