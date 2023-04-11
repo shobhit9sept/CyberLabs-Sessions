@@ -1,0 +1,9 @@
+# SimCLR v2 summary
+
+SimCLRv2 is a semi-supervised learning method for learning from few labeled examples while making best use of a large amount of unlabeled data. It is a modification of a recently proposed contrastive learning framework, SimCLR. It improves upon it in three major ways:
+
+1) To fully leverage the power of general pre-training, larger ResNet models are explored. Unlike SimCLR and other previous work, whose largest model is ResNet-50 (4×), SimCLRv2 trains models that are deeper but less wide. The largest model trained is a 152 layer ResNet with 3× wider channels and selective kernels (SK), a channel-wise attention mechanism that improves the parameter efficiency of the network. By scaling up the model from ResNet-50 to ResNet-152 (3×+SK), a 29% relative improvement is obtained in top-1 accuracy when fine-tuned on 1% of labeled examples.
+
+2) The capacity of the non-linear network g(.) (a.k.a. projection head) is increased, by making it deeper. Furthermore, instead of throwing away g(.) entirely after pre-training as in SimCLR, fine-tuning occurs from a middle layer. This small change yields a significant improvement for both linear evaluation and fine-tuning with only a few labeled examples. Compared to SimCLR with 2-layer projection head, by using a 3-layer projection head and fine-tuning from the 1st layer of projection head, it results in as much as 14% relative improvement in top-1 accuracy when fine-tuned on 1% of labeled examples.
+
+3) The memory mechanism of MoCo v2 is incorporated, which designates a memory network (with a moving average of weights for stabilization) whose output will be buffered as negative examples. Since training is based on large mini-batch which already supplies many contrasting negative examples, this change yields an improvement of ∼1% for linear evaluation as well as when fine-tuning on 1% of labeled examples.
