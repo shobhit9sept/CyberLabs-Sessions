@@ -3,10 +3,13 @@
 ## Existing Problem
 In the current time, we have a lot of image data of which very little is labeled and the process of labeling the data by human intervention is fine consuming and extremely laborious. We need methods of utilizing the unlabeled data and train our model using unsupervised learning followed by supervised learning similar to NLP model BERT.
 
+#### background
 BERT uses feed forward architecture which provides ground for use in image type data, but problem arises due to continuous nature of images compared to distinct words in a sentence.
 
 ## Implementation
-Similar to BERT we use distractor patches, which mask some parts of the input image and we need a model to predict position of the said distractor patches.
+Similar to BERT, we mask out a few patches in an image and try to reconstruct the original image. To
+enable the classification loss, we sample “distractor” patches from the same image, and ask the model
+to classify the right patch to fill in a target masked location
 
 We first pre-train the model on unlabeled data (specifically the first 3 blocks of ResNet-50), call it P (Patch Processing Network).
 
